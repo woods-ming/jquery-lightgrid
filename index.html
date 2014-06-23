@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <!-- seo -->
+    <title>Light Grid</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html;" />
+    <meta name="keywords" content="LightGrid.js" />
+    <meta name="description" content="简单、干净、轻巧的 DataTable 插件" />
+    <meta name="author" content="woods240" />
+
+    <!-- css -->
+    <link href="//libs.baidu.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/prettify/r298/prettify.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="FavIcon.ico">
+
+    <style>
+        .container, .jumbotron .container {
+            max-width: 60em;
+        }
+
+        .jumbotron {
+            color: #fff;
+            background-color: #4ecdc4;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+        }
+
+        li:not(:first-child) > h2, footer {
+            margin-top: 1.5em;
+        }
+
+        ol {
+            padding: 0;
+        }
+
+        li {
+            margin: 1em 0;
+        }
+
+        td > pre {
+            border: none;
+        }
+    </style>
+</head>
+<body style="padding-top: 80px;">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <ul class="nav navbar-nav">
+                <li><a style="color: #4ECDC4; font-weight: bold; font-size: 1.5em;">LightGrid.js</a></li>
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+                <li><a href="#" target="_blank">下载</a></li>
+                <li><a href="demo/bootstrap/demo_BootStrap.html" target="_blank">BootStrap示例</a></li>
+                <li><a href="demo/purecss/demo_PureCss.html" target="_blank">PureCss示例</a></li>
+                <li><a href="demo/metroui/demo_MetroUI.html" target="_blank">MetroUI示例</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="text-center">LightGrid.js</h1>
+            <p class="text-center">简单、干净、轻巧的 DataTable 插件</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <ol style="list-style-type: none;">
+            <li>
+                <h2>一、LightGrid.js 是什么？</h2>
+                <ul>
+                    <li>Light Grid 是一个 jquery 数据列表插件（异步刷新），提供 <strong class="text-info">分页、排序、过滤</strong></li>
+                    <li>最大的特点是不受制于特定的 CSS、Image， <strong class="text-danger">皮肤完全由个人控制</strong></li>
+                    <li>提供灵活的配置选项， <strong class="text-primary">易于扩展功能</strong></li>
+                </ul>
+            </li>
+            <li>
+                <h2>二、使用</h2>
+                <pre><code id="template" class="prettyprint linenums lan-html"></code></pre>
+            </li>
+            <li>
+                <h2>三、约定</h2>
+                <ul>
+                    <li><strong class="text-info">data-field</strong> 标识该列绑定的字段</li>
+                    <li><strong class="text-info">aria-sort</strong> 标识该列的排序状态（ascending / descending / none）</li>
+                    <li><strong class="text-info">data-search</strong> 标识该搜索框对应的字段</li>
+                    <li>服务器必须返回 <strong class="text-info">Json</strong>，格式为 { "entityArray": [数据列表], "total": 总记录数 }</li>
+                </ul>
+            </li>
+            <li>
+                <h2>四、配置 <small>Options的默认值，匹配 Bootstrap 3</small></h2>
+                <table id="OptionsDetail" class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th data-field="OptionName" aria-sort="none">参数名称</th>
+                            <th data-field="DefaultValue" style="width: 24em;">默认值</th>
+                            <th data-field="Description">用途</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </li>
+            <li>
+                <h2>五、小提示</h2>
+                <ul>
+                    <li><strong class="text-info">排序</strong> 按住Ctrl键，支持多列排序（另：本页面藏有客户端排序的代码）</li>
+                    <li><strong class="text-info">刷新</strong> 再次初始化插件，在更改参数的同时，会执行刷新操作</li>
+                    <li><strong class="text-info">示例</strong> 三个例子展现了3种分页交互方式，Bootstrap示例还包含排序、过滤（相对全面）</li>
+                </ul>
+            </li>
+        </ol>
+
+        
+    </div>
+
+    <footer>
+        <div class="container text-center">
+            <address>
+                Written & designed by <a href="http://letscode.sinaapp.com/" target="_blank">woods240</a><br>
+                <strong>Licensed under the <a href="http://www.opensource.org/licenses/mit-license.php" target="_blank">MIT License</a></strong>
+            </address>
+        </div>
+    </footer>
+
+    <!-- js -->
+    <script src="//libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="jquery.lightgrid.min.js"></script>
+    <script src="//cdn.bootcss.com/prettify/r298/prettify.min.js"></script>
+    <script>
+        $( function () {
+            $.ajax( {
+                url: 'template.html',
+                success: function ( data ) {
+                    var encodedData = encodeHtml( data );
+
+                    $( '#template' ).html( encodedData );
+                    window.prettyPrint && prettyPrint();
+                },
+                type: 'get',
+                dataType: 'text',
+                async: false
+            } );
+
+            $( '#OptionsDetail' ).lightgrid( {
+                dataUrl: 'options.json'
+
+                // 定制单元格内容
+                  , fieldMapToCell: function ( fieldName, entity, index, startRowIndex ) {
+                      var cellContent = fieldName ? entity[fieldName] : startRowIndex + index;
+
+                      if ( fieldName == 'DefaultValue' && !cellContent.indexOf( 'function' ) ) {
+                          return '<td><pre><code class="prettyprint lan-html">' + encodeHtml( cellContent ) + '</code></pre></td>';
+                      }
+
+                      return '<td>' + cellContent + '</td>';
+                  }
+
+                // 客户端排序
+                  , onDrawing: function ( model ) {
+                      if ( model.sortArray.length == 0 ) {
+                          return;
+                      }
+
+                      model.entityArray.sort( function ( a, b ) {
+                          for ( index in model.sortArray ) {
+                              var item = model.sortArray[index]
+                                , sortName = item.name
+                                , sortAssending = item.value
+                                , compareValue = new String( a[sortName] ).localeCompare( new String( b[sortName] ) );
+
+                              if ( compareValue == 0 ) {
+                                  continue;
+                              }
+
+                              return compareValue * ( sortAssending ? 1 : -1 );
+                          }
+
+                          return 1;
+                      } );
+                  }
+
+                , onLoad: function () {
+                    window.prettyPrint && prettyPrint();
+                }
+            } );
+
+        } );
+
+        function encodeHtml( html ) {
+            return html.replace( /&/g, '&amp;' ).replace( /</g, '&lt;' ).replace( />/g, '&gt;' );
+        }
+    </script>
+</body>
+</html>

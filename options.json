@@ -1,0 +1,103 @@
+﻿{
+	"entityArray": [{
+		"OptionName": "dataUrl",
+		"DefaultValue": "''",
+		"Description": "获取数据的action"
+	},
+	{
+		"OptionName": "splitChar",
+		"DefaultValue": "'_'",
+		"Description": "排序和过滤时用Array存储信息，在发送请求前要序列化，splitChar就是键、值之间的连字符。如：\"sortArray=Operator_true\""
+	},
+	{
+		"OptionName": "onLoading",
+		"DefaultValue": "function ( paramData ) { }",
+		"Description": "发送ajax请求前，触发的事件。<br />paramData是$.ajax()的data对象，即请求参数：<br />var paramData = { <br />&nbsp;&nbsp; pageIndex: 1, <br />&nbsp;&nbsp; pageSize: 10, <br />&nbsp;&nbsp; sortArray: [], <br />&nbsp;&nbsp; searchArray: [], <br />&nbsp;&nbsp; time: new Date().getTime() <br />}"
+	},
+	{
+		"OptionName": "onDrawing",
+		"DefaultValue": "function ( model ) { }",
+		"Description": "ajax请求成功后、视图更新前，触发的事件。<br />model是当前的数据模型对象：<br />var model = { <br />&nbsp;&nbsp; entityArray: [], <br />&nbsp;&nbsp; pagination: {}, <br />&nbsp;&nbsp; sortArray: [], <br />&nbsp;&nbsp; searchArray: [] <br />}"
+	},
+    {
+		"OptionName": "onLoad",
+		"DefaultValue": "function ( model ) { }",
+		"Description": "视图更新完成后，触发的事件。<br />model是当前的数据模型对象：<br />var model = { <br />&nbsp;&nbsp; entityArray: [], <br />&nbsp;&nbsp; pagination: {}, <br />&nbsp;&nbsp; sortArray: [], <br />&nbsp;&nbsp; searchArray: [] <br />}"
+	},
+	{
+		"OptionName": "listHeadSelector",
+		"DefaultValue": "'thead th'",
+		"Description": "标题单元格的jquery选择器，指定标题列"
+	},
+	{
+		"OptionName": "listBodySelector",
+		"DefaultValue": "'tbody'",
+		"Description": "内容区域的jquery选择器，指定数据容器"
+	},
+	{
+		"OptionName": "fieldMapToCell",
+		"DefaultValue": "function (fieldName, entity,\n          index, startRowIndex ) {\n    var cellContent = fieldName\n        ? entity[fieldName]\n        : startRowIndex + index;\n    return '<td>' + cellContent + '</td>';\n}",
+		"Description": "将字段值映射成单元格内容的函数。<br />fieldName：字段名称 <br />entity：该行对应的数据对象 <br />index：行索引 <br />startRowIndex：本页的起始行号 "
+	},
+	{
+		"OptionName": "pageListSelector",
+		"DefaultValue": "'ul.pagination'",
+		"Description": "电梯分页的jquery选择器，指定分页容器"
+	},
+	{
+		"OptionName": "pageIndex",
+		"DefaultValue": "1",
+		"Description": "当前页序号"
+	},
+	{
+		"OptionName": "pageSize",
+		"DefaultValue": "10",
+		"Description": "分页大小（每页多少条记录）"
+	},
+	{
+		"OptionName": "pageItemAmount",
+		"DefaultValue": "5",
+		"Description": "分页按钮数量（最多显示几个分页按钮）"
+	},
+	{
+		"OptionName": "pageItemTemplate",
+		"DefaultValue": "'&lt;li&gt;&lt;a href=\"#\" &gt;{0}&lt;/a&gt;&lt;/li&gt;'",
+		"Description": "分页按钮的html模版"
+	},
+	{
+		"OptionName": "pageActiveItemTemplate",
+		"DefaultValue": "'&lt;li class=\"active\"&gt;&lt;a href=\"#\" &gt;{0}&lt;/a&gt;&lt;/li&gt;'",
+		"Description": "分页按钮在Active状态的html模版"
+	},
+	{
+		"OptionName": "pageDisabledItemTemplate",
+		"DefaultValue": "'&lt;li class=\"disabled\"&gt;&lt;a href=\"#\" &gt;{0}&lt;/a&gt;&lt;/li&gt;'",
+		"Description": "分页按钮在Disabled状态的html模版"
+	},
+	{
+		"OptionName": "pageInfoSelector",
+		"DefaultValue": "'.pageInfo'",
+		"Description": "分页信息的jquery选择器"
+	},
+	{
+		"OptionName": "pageInfoTemplate",
+		"DefaultValue": "'显示第 {pageIndex}/{pageTotal} 页，共 {total} 项记录'",
+		"Description": "分页信息的html模版"
+	},
+	{
+		"OptionName": "sortAsendingCallback",
+		"DefaultValue": "function ( $sortTh ) {\n  if($sortTh.find('.caret').length == 0) {\n      $sortTh.append(\n        '<span class=\"caret\"></span>');\n  }\n\n  $sortTh.addClass( 'dropup' );\n}",
+		"Description": "排序状态变为升序时，触发的事件。<br />$sortTh：当前排序的单元格"
+	},
+	{
+		"OptionName": "sortDescendingCallback",
+		"DefaultValue": "function ( $sortTh ) {\n  if($sortTh.find('.caret').length == 0) {\n      $sortTh.append(\n        '<span class=\"caret\"></span>');\n  }\n\n  $sortTh.removeClass( 'dropup' );\n}",
+		"Description": "排序状态变为降序时，触发的事件。<br />$sortTh：当前排序的单元格"
+	},
+	{
+		"OptionName": "sortNoneCallback",
+		"DefaultValue": "function ( $sortTh ) {\n  $sortTh.removeClass( 'dropup' )\n         .find( '.caret' ).remove(); \n}",
+		"Description": "排序状态变为无序时，触发的事件。<br />$sortTh：当前排序的单元格"
+	}],
+	"total": 22
+}

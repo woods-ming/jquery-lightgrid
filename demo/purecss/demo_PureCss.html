@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>PureCss示例</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html;" />
+
+    <link href="pure-min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="FavIcon.ico">
+
+    <style>
+        .pure-table-bordered tbody > tr:last-child td, .pure-table-horizontal tbody > tr:last-child td {
+            border-bottom-width: 1px;
+        }
+
+        .pure-table-bordered tfoot > tr > td {
+            background-color: white;
+            border: none;
+            padding: 1px;
+        }
+    </style>
+</head>
+<body style="padding: 1em;">
+
+    <div id="logList">
+        <table class="pure-table pure-table-bordered pure-table-striped" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th data-field="Operator">操作者</th>
+                    <th data-field="OperationType">操作类型</th>
+                    <th data-field="OperationTime">操作时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--数据列表-->
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2" class="pageInfo">
+                        <!--分页信息-->
+                    </td>
+                    <td colspan="2">
+                        <ul class="pure-paginator" style="float: right;">
+                            <!--分页电梯-->
+                        </ul>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="pure-form-message">
+        <h3>Ajax请求的参数</h3>
+        <p id="paramData"></p>
+    </div>
+
+    <!-- js -->
+    <script src="//libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="../../jquery.lightgrid.min.js"></script>
+    <script>
+        $( function () {
+            var options = {
+                dataUrl: '../data.json',
+
+                pageSize: 20,
+                pageItemAmount: 7,
+                pageListSelector: 'ul.pure-paginator',
+                pageItemTemplate: '<li><a class="pure-button" href="#">{0}</a></li>',
+                pageActiveItemTemplate: '<li><a class="pure-button pure-button-active" href="#">{0}</a></li>',
+                pageDisabledItemTemplate: '<li><a class="pure-button pure-button-disabled" href="#">{0}</a></li>',
+                pageInfoSelector: '.pageInfo',
+                pageInfoTemplate: '跳转到第 <input id="pageNumber" type="text" value="{pageIndex}" style="width:40px"/> 页，共 {pageTotal} 页',
+
+                onLoading: function ( paramData ) {
+                    $( '#paramData' ).text( $.param( paramData, true ) );
+                }
+            };
+
+            $( '#logList' ).lightgrid( options )
+                .on( 'change', '#pageNumber', function () {
+                    $( '#logList' ).lightgrid( { pageIndex: this.value } );
+                } );
+        } );
+    </script>
+</body>
+</html>

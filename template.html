@@ -1,0 +1,39 @@
+﻿<!-- 定义 数据列表的结构 -->
+<input id="搜索框" type="text" data-search="字段3" />
+<table id="OptionsDetail">
+    <thead>
+        <tr>
+            <th>序号列</th>
+            <th data-field="字段1">仅能显示的列</th>
+            <th data-field="字段2" aria-sort="none">支持排序的列</th>
+            <th data-field="字段3">能够过滤的列</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="2" class="pageInfo">
+                <!--分页信息-->
+            </td>
+            <td colspan="2">
+                <ul class="pagination">
+                    <!--分页电梯-->
+                </ul>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+<!-- 引用jquery -->
+<script src="//libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+<!-- 引用lightgrid -->
+<script src="jquery.lightgrid.js"></script>
+<script>
+    $( function () {
+        // 初始化 lightgrid 插件
+        var options = { dataUrl: 'data.json' };
+        $( '#OptionsDetail' ).lightgrid( options );
+    } );
+</script>
+

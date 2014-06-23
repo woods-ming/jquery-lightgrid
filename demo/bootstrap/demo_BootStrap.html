@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>BootStrap示例</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html;" />
+
+    <link href="//libs.baidu.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="FavIcon.ico">
+
+    <style>
+        table > thead > tr.row-search > td {
+            padding: 3px;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        tr.row-search > td > input, tr.row-search > td > select {
+            width: 100%;
+            height: 30px;
+        }
+    </style>
+</head>
+<body style="padding: 1em;">
+
+    <div id="logList">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th rowspan="2"></th>
+                    <th data-field="Operator" aria-sort="ascending">操作者</th>
+                    <th data-field="OperationType" aria-sort="none">操作类型</th>
+                    <th data-field="OperationTime" aria-sort="descending">操作时间</th>
+                    <th data-field="tools"></th>
+                </tr>
+                <tr class="row-search">
+                    <td>
+                        <input type="text" data-search="Operator" />
+                    </td>
+                    <td>
+                        <select data-search="OperationType">
+                            <option></option>
+                            <option value="create">创建</option>
+                            <option value="upgrade">升级</option>
+                            <option value="refactor">重构</option>
+                            <option value="optimize">性能优化</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" data-search="OperationTime" />
+                    </td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <!--数据列表-->
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2" class="pageInfo text-muted" style="vertical-align: middle;">
+                        <!--分页信息-->
+                    </td>
+                    <td colspan="3">
+                        <ul class="pagination pull-right" style="margin: 0">
+                            <!--分页电梯-->
+                        </ul>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">Ajax请求的参数</div>
+        <div id="paramData" class="panel-body">
+            Panel content
+        </div>
+    </div>
+
+    <!-- js -->
+    <script src="//libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="../../jquery.lightgrid.min.js"></script>
+    <script>
+        $( function () {
+            var options = {
+                dataUrl: '../data.json',
+                fieldMapToCell: function ( fieldName, entity, index, startRowIndex ) {
+                    var cell = '<td>&nbsp;</td>';
+
+                    if ( fieldName == 'tools' ) {
+                        cell = '<td class="text-center"><button onclick="return confirm(\'确定要删除 ' + entity['Operator'] + ' 的操作记录吗？\');" class="btn btn-danger">删除</button></td>';
+                    } else if ( fieldName == 'OperationTime' ) {
+                        cell = '<td><span class="badge">' + entity[fieldName] + '</span></td>';
+                    } else if ( fieldName ) {
+                        cell = '<td>' + entity[fieldName] + '</td>';
+                    } else {
+                        var rowNumber = startRowIndex + index;
+                        cell = '<td class="text-center">' + rowNumber + '</td>';
+                    }
+
+                    return cell;
+                },
+                onLoading: function ( paramData ) {
+                    $( '#paramData' ).text( $.param( paramData, true ) );
+                },
+                pageSize: 5,
+            };
+
+            $( '#logList' ).lightgrid( options );
+        } );
+    </script>
+</body>
+</html>

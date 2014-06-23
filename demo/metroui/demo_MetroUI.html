@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>MetroUI示例</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html;" />
+
+    <link href="metro-bootstrap.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="FavIcon.ico">
+</head>
+<body class="metro" style="padding: 1em;">
+
+    <div id="logList">
+        <table class="table striped hovered" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th data-field="Operator" class="text-left">操作者</th>
+                    <th data-field="OperationType" class="text-left">操作类型</th>
+                    <th data-field="OperationTime" class="text-left">操作时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--数据列表-->
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2" class="pageInfo" style="background-color: white; border: none">
+                        <!--分页信息-->
+                    </td>
+                    <td colspan="2" style="background-color: white; border: none">
+                        <div class="pagination" style="float: right;">
+                            <ul>
+                                <!--分页电梯-->
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-header bg-lightBlue fg-white">Ajax请求的参数</div>
+        <div id="paramData" class="panel-content">
+            Panel content
+        </div>
+    </div>
+
+    <!-- js -->
+    <script src="//libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="../../jquery.lightgrid.min.js"></script>
+    <script>
+        $( function () {
+            var options = {
+                dataUrl: '../data.json',
+                onLoading: function ( paramData ) {
+                    $( '#paramData' ).text( $.param( paramData, true ) );
+                },
+                onLoad: function ( model ) {
+                    $( '#pageSize' ).val( model.pagination.pageSize );
+                },
+
+                pageSize: 20,
+                pageItemAmount: 9,
+                pageListSelector: 'div.pagination ul',
+                pageItemTemplate: '<li><a href="#">{0}</a></li>',
+                pageActiveItemTemplate: '<li class="active"><a href="#">{0}</a></li>',
+                pageDisabledItemTemplate: '<li class="disabled"><a href="#">{0}</a></li>',
+                pageInfoSelector: '.pageInfo',
+                pageInfoTemplate: '每页显示 <select id="pageSize"><option value="10">10</option><option value="20">20</option><option value="50">50</option></select> 条',
+            };
+
+            $( '#logList' ).lightgrid( options )
+                .on( 'change', '#pageSize', function () {
+                    $( '#logList' ).lightgrid( { pageSize: this.value } );
+                } );
+        } );
+    </script>
+</body>
+</html>
