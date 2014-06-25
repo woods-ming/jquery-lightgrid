@@ -1,7 +1,8 @@
 ﻿<!DOCTYPE html>
 <html lang="zh-cn">
 <head>
-    <!-- seo -->
+    <meta name="baidu-site-verification" content="zCrMvFA6eF" />
+
     <title>Light Grid</title>
     <meta charset="utf-8" />
     <meta http-equiv="Content-Type" content="text/html;" />
@@ -13,7 +14,6 @@
     <link href="//libs.baidu.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/prettify/r298/prettify.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="FavIcon.ico">
-
     <style>
         .container, .jumbotron .container {
             max-width: 60em;
@@ -89,24 +89,26 @@
             </li>
             <li>
                 <h2>四、配置 <small>Options的默认值，匹配 Bootstrap 3</small></h2>
-                <table id="OptionsDetail" class="table table-striped table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th data-field="OptionName" aria-sort="none" title="排序">参数名称</th>
-                            <th data-field="DefaultValue" style="width: 24em;">默认值</th>
-                            <th data-field="Description">用途</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+                <div id="OptionsDetail">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th data-field="OptionName" aria-sort="none" title="排序">参数名称</th>
+                                <th data-field="DefaultValue" style="width: 24em;">默认值</th>
+                                <th data-field="Description">用途</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
             </li>
             <li>
                 <h2>五、小提示</h2>
                 <ul>
                     <li><strong class="text-info">排序</strong> 按住Ctrl键，支持多列排序（另：本页面藏有客户端排序的代码）</li>
                     <li><strong class="text-info">刷新</strong> 再次初始化插件，在更改参数的同时，会执行刷新操作</li>
-                    <li><strong class="text-info">示例</strong> 三个例子展现了3种分页交互方式，Bootstrap示例还包含排序、过滤（相对全面）</li>
+                    <li><strong class="text-info">示例</strong> PureCss、MetroUI示例简单展示了分页的使用，Bootstrap示例全面展示了分页、排序、过滤、冻结列、复选</li>
                 </ul>
             </li>
         </ol>
@@ -141,7 +143,7 @@
                 dataType: 'text',
                 async: false
             } );
-
+            
             $( '#OptionsDetail' ).lightgrid( {
                 dataUrl: 'options.json'
 
@@ -160,8 +162,8 @@
                   , onDrawing: function ( model ) {
                       if ( model.sortArray.length == 0 ) {
                           return;
-                      }
-
+                      } 
+                      
                       model.entityArray.sort( function ( a, b ) {
                           for ( index in model.sortArray ) {
                               var item = model.sortArray[index]

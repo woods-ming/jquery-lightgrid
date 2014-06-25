@@ -27,12 +27,12 @@
 	{
 		"OptionName": "listHeadSelector",
 		"DefaultValue": "'thead th'",
-		"Description": "标题单元格的jquery选择器，指定标题列"
+		"Description": "标题单元格的jquery选择器，在Table内寻找标题列"
 	},
 	{
 		"OptionName": "listBodySelector",
 		"DefaultValue": "'tbody'",
-		"Description": "内容区域的jquery选择器，指定数据容器"
+		"Description": "内容区域的jquery选择器，在Table内寻找数据容器"
 	},
 	{
 		"OptionName": "fieldMapToCell",
@@ -42,7 +42,7 @@
 	{
 		"OptionName": "pageListSelector",
 		"DefaultValue": "'ul.pagination'",
-		"Description": "电梯分页的jquery选择器，指定分页容器"
+		"Description": "电梯分页的jquery选择器，在Table内寻找分页电梯的容器"
 	},
 	{
 		"OptionName": "pageIndex",
@@ -77,7 +77,7 @@
 	{
 		"OptionName": "pageInfoSelector",
 		"DefaultValue": "'.pageInfo'",
-		"Description": "分页信息的jquery选择器"
+		"Description": "分页信息的jquery选择器，在Table内寻找分页信息显示的地方"
 	},
 	{
 		"OptionName": "pageInfoTemplate",

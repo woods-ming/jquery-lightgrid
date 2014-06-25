@@ -58,24 +58,30 @@
 
         // view
         this.partialView_content = function ( entityArray, startRowIndex ) {
-            this.$tbody.empty();
-
             var that = this;
-            for ( index in entityArray ) {
-                var entity = entityArray[index];
-                var row = '<tr>';
+            this.$tables.each( function () {
+                var $table = $( this )
+                  , $ths = $table.find( that.options.listHeadSelector )
+                  , $tbody = $table.find( that.options.listBodySelector );
 
-                this.$ths.each( function () {
-                    var $th = $( this )
-                    , fieldName = $th.attr( 'data-field' )
-                    , cellHtml = that.options.fieldMapToCell( fieldName, entity, parseInt( index ), startRowIndex );
+                $tbody.empty();
+                for ( index in entityArray ) {
+                    var entity = entityArray[index];
+                    var row = '<tr>';
 
-                    row += cellHtml;
-                } );
-                row += '</tr>';
+                    $ths.each( function () {
+                        var $th = $( this )
+                        , fieldName = $th.attr( 'data-field' )
+                        , cellHtml = that.options.fieldMapToCell( fieldName, entity, parseInt( index ), startRowIndex );
 
-                this.$tbody.append( row );
-            }
+                        row += cellHtml;
+                    } );
+                    row += '</tr>';
+
+                    $tbody.append( row );
+                }
+            } );
+
         };
         this.partialView_page = function ( pagination ) {
             // 1.construct pageList
@@ -197,11 +203,10 @@
 
       , init: function ( $element ) {
           // init dom element
-          this.$ths = $element.find( this.options.listHeadSelector );
-          this.$tbody = $element.find( this.options.listBodySelector );
+          this.$tables = $element.find( 'table' );
           this.$pageList = $element.find( this.options.pageListSelector );
           this.$pageInfo = $element.find( this.options.pageInfoSelector );
-          this.$sortThs = this.$ths.filter( '[aria-sort]' );
+          this.$sortThs = $element.find( this.options.listHeadSelector ).filter( '[aria-sort]' );
           this.$searchBoxes = $element.find( ':input[data-search]' );
 
           var that = this;
