@@ -41,78 +41,81 @@
         }
     </style>
 </head>
-<body style="padding: 1em;">
-    <div class="panel panel-primary">
-        <div class="panel-heading">Ajax请求的参数</div>
-        <div id="paramData" class="panel-body">
-            Panel content
+<body>
+    <div class="container-fluid">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Ajax请求的参数</div>
+            <div id="paramData" class="panel-body">
+                Panel content
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <button type="button" id="save" class="btn btn-default">存档</button>
-    </div>
-    <div id="logList">
-        <div class="row">
-            <div class="col-md-7 frozen">
-                <table class="table table-striped table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th rowspan="2"></th>
-                            <th data-field="Operator" aria-sort="ascending">操作者</th>
-                            <th data-field="icon" rowspan="2"></th>
-                            <th rowspan="2" data-field="choise" class="text-center" style="width:50px"><input type="checkbox" id="checkAll" /></th>
-                        </tr>
-                        <tr class="row-search">
-                            <td>
-                                <input type="text" data-search="Operator" />
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!--数据列表-->
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-md-5 scroll">
-                <table class="table table-striped table-bordered table-hover" style="width:800px;">
-                    <thead>
-                        <tr>
-                            <th data-field="OperationType" aria-sort="none">操作类型</th>
-                            <th data-field="OperationTime" aria-sort="descending">操作时间</th>
-                            <th rowspan="2" data-field="tools"></th>
-                        </tr>
-                        <tr class="row-search">
-                            <td>
-                                <select data-search="OperationType">
-                                    <option></option>
-                                    <option value="create">创建</option>
-                                    <option value="upgrade">升级</option>
-                                    <option value="refactor">重构</option>
-                                    <option value="optimize">性能优化</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="text" data-search="OperationTime" />
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!--数据列表-->
-                    </tbody>
-                </table>
-            </div>
+        <div class="form-group">
+            <button type="button" id="save" class="btn btn-default">存档</button>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <ul class="pagination" style="margin: 0">
-                    <!--分页电梯-->
-                </ul>
+        <div id="logList">
+            <div class="row">
+                <div class="col-md-7 frozen">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th rowspan="2"></th>
+                                <th data-field="Operator" aria-sort="ascending">操作者</th>
+                                <th data-field="icon" rowspan="2"></th>
+                                <th rowspan="2" data-field="choise" class="text-center" style="width: 50px">
+                                    <input type="checkbox" id="checkAll" /></th>
+                            </tr>
+                            <tr class="row-search">
+                                <td>
+                                    <input type="text" data-search="Operator" />
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--数据列表-->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-5 scroll">
+                    <table class="table table-striped table-bordered table-hover" style="width: 800px;">
+                        <thead>
+                            <tr>
+                                <th data-field="OperationType" aria-sort="none">操作类型</th>
+                                <th data-field="OperationTime" aria-sort="descending">操作时间</th>
+                                <th rowspan="2" data-field="tools"></th>
+                            </tr>
+                            <tr class="row-search">
+                                <td>
+                                    <select data-search="OperationType">
+                                        <option></option>
+                                        <option value="create">创建</option>
+                                        <option value="upgrade">升级</option>
+                                        <option value="refactor">重构</option>
+                                        <option value="optimize">性能优化</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" data-search="OperationTime" />
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--数据列表-->
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="col-md-8">
-                <span class="pageInfo text-muted pull-right">
-                    <!--分页信息-->
-                </span>
+            <div class="row">
+                <div class="col-md-4">
+                    <ul class="pagination" style="margin: 0">
+                        <!--分页电梯-->
+                    </ul>
+                </div>
+                <div class="col-md-8">
+                    <span class="pageInfo text-muted pull-right">
+                        <!--分页信息-->
+                    </span>
+                </div>
             </div>
         </div>
     </div>
